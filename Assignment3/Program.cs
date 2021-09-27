@@ -7,7 +7,7 @@ namespace Assignment3
     {
         static void Main(string[] args)
         {
-            Queries.FirstSithLordLINQ();
+            Queries.ListOfWizardsAndCreatorsExtension();
         }
     }
 }
