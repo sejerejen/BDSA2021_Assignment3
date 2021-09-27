@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -22,6 +24,17 @@ namespace BDSA2020.Assignment02
             return counter;
             //return Regex.Matches(s, regex).Count;
 
+        }
+        public static void Print<T>(this IEnumerable<T> items) 
+        {
+            foreach(var item in items)
+            {
+                Console.WriteLine(item);
+            }
+        }
+        public static void PrintSingle<T>(this T item)
+        {
+            Console.WriteLine(item);
         }
     }
 }

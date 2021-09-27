@@ -20,7 +20,7 @@ namespace BDSA2020.Assignment02
 
         public static Lazy<IReadOnlyCollection<Wizard>> Wizards { get; } = new Lazy<IReadOnlyCollection<Wizard>>(() =>
         {
-            var csv = File.OpenText("../../../../Wizards.csv");
+            var csv = File.OpenText("Wizards.csv");
             using var reader = new CsvReader(csv, CultureInfo.InvariantCulture);
             return reader.GetRecords<Wizard>().ToList().AsReadOnly();
         });
