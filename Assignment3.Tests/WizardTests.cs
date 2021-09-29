@@ -5,11 +5,11 @@ namespace BDSA2020.Assignment02.Tests
     public class WizardTests
     {
         [Fact]
-        public void Wizards_contains_2_wizards()
+        public void Wizards_contains_11_wizards()
         {
             var wizards = Wizard.Wizards.Value;
-
-            Assert.Equal(2, wizards.Count);
+            //counts the first line, even though it is just an indicator for what the different strings are for
+            Assert.Equal(11, wizards.Count);
         }
 
         [Theory]

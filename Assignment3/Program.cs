@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Collections.Generic;
 using BDSA2020.Assignment02;
 
 namespace Assignment3
@@ -7,7 +9,8 @@ namespace Assignment3
     {
         static void Main(string[] args)
         {
-            Queries.ListOfWizardsAndCreatorsExtension();
+
+            Queries.ListOfWizardsAndCreatorsLINQ();
         }
     }
 }

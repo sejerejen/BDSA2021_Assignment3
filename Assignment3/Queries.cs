@@ -7,7 +7,7 @@ namespace BDSA2020.Assignment02
 {
     public class Queries
     {
-        public static void WizardsOfRowlingLINQ() 
+        public static IEnumerable<string> WizardsOfRowlingLINQ() 
         {
             var listOfWizards = Wizard.Wizards.Value;
 
@@ -16,16 +16,16 @@ namespace BDSA2020.Assignment02
                 where wiz.Creator == "J.K. Rowling"
                 select wiz.Name;
 
-            wizQuery.Print();
+            return wizQuery;
         }
-        public static void WizardsOfRowlingExtension()
+        public static IEnumerable<string> WizardsOfRowlingExtension()
         {
             var listOfWizards = Wizard.Wizards.Value
                                               .Where(wiz=>wiz.Creator=="J.K. Rowling")
                                               .Select(wiz=>wiz.Name);
-            listOfWizards.Print();
+            return listOfWizards;
         }
-        public static void FirstSithLordLINQ()
+        public static IEnumerable<int?> FirstSithLordLINQ()
         {
             var listOfWizards = Wizard.Wizards.Value;
 
@@ -35,9 +35,9 @@ namespace BDSA2020.Assignment02
                 orderby wiz.Year
                 select wiz.Year).Take(1);
 
-                wizQuery.Print();
+                return wizQuery;
         }
-        public static void FirstSithLordExtension()
+        public static int? FirstSithLordExtension()
         {
             var listOfWizards = Wizard.Wizards.Value
                                               .Where(Wiz=>Wiz.Name.StartsWith("Darth"))
@@ -45,30 +45,30 @@ namespace BDSA2020.Assignment02
                                               .Select(wiz=>wiz.Year)
                                               .FirstOrDefault();
 
-            listOfWizards.PrintSingle();
+            return listOfWizards;
         }
 
-        public static void HarryPotterCharactersLINQ()
+        public static IEnumerable<(string, int?)> HarryPotterCharactersLINQ()
         {
             var listOfWizards = Wizard.Wizards.Value;
 
             var wizQuery = 
                 from wiz in listOfWizards
                 where wiz.Medium.Contains("Harry Potter")
-                select new {Name=wiz.Name, Year=wiz.Year};
+                select (wiz.Name, wiz.Year);
 
-            wizQuery.Print();
+            return wizQuery;
         }
 
-        public static void HarryPotterCharactersExtension()
+        public static IEnumerable<(string, int?)> HarryPotterCharactersExtension()
         {
             var listOfWizards = Wizard.Wizards.Value
                                               .Where(wiz=>wiz.Medium.Contains("Harry Potter"))
                                               .Select(wiz=>(wiz.Name,wiz.Year));
-            listOfWizards.Print();
+            return listOfWizards;
         }
 
-        public static void ListOfWizardsAndCreatorsLINQ()
+        public static IEnumerable<string> ListOfWizardsAndCreatorsLINQ()
         {
             var listOfWizards = Wizard.Wizards.Value;
 
@@ -79,15 +79,15 @@ namespace BDSA2020.Assignment02
                 group wiz by new {wiz.Creator, wiz.Name} into wizzy
                 select wizzy.Key.Name;
 
-            wizQuery.Print();
+            return wizQuery;
         }
-        public static void ListOfWizardsAndCreatorsExtension()
+        public static IEnumerable<string> ListOfWizardsAndCreatorsExtension()
         {
             var listOfWizards = Wizard.Wizards.Value
                                               .OrderByDescending(wiz=>wiz.Creator).ThenByDescending(wiz=>wiz.Name)
                                               .GroupBy(wiz=>(wiz.Name,wiz.Creator))
                                               .Select(wiz=>wiz.Key.Name);
-            listOfWizards.Print();
+            return listOfWizards;
         }
     }
 }
